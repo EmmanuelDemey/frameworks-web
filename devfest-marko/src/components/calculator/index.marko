@@ -1,8 +1,8 @@
 class {
     onCreate() {
-        this.state = { formula:0 };
+        this.state = { formula:'' };
     }
-    delete() {
+    clickDelete() {
         this.state.formula = '';
         this.emit('update', this.state.formula);
     }
@@ -28,7 +28,7 @@ style {
 
 <div id="main">
     <div id="first-rows">
-        <button on-click('delete') class="del-bg" id="delete">
+        <button on-click('clickDelete') class="del-bg" id="delete">
         Del
         </button>
         <button
