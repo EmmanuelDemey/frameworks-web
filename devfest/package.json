@@ -1,0 +1,16 @@
+{
+  "name": "devfest",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "inferno": "^3.7.1",
+    "inferno-component": "^3.7.1",
+    "inferno-scripts": "4.2.0"
+  },
+  "scripts": {
+    "start": "inferno-scripts start",
+    "build": "inferno-scripts build",
+    "test": "inferno-scripts test --env=jsdom",
+    "eject": "inferno-scripts eject"
+  }
+}
