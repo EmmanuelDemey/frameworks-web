@@ -1,0 +1,22 @@
+class {
+  onCreate() {
+      this.state = {
+          formula: '',
+      }
+  }
+
+  update(formula){
+      if(formula){
+          this.state.formula = formula;
+      }
+  }
+}
+
+style {
+
+}
+
+<div id="background">
+    <div id="result">${state.formula}</div>
+    <calculator on-update('update') />
+</div>
