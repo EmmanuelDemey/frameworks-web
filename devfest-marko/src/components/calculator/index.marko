@@ -1,167 +1,124 @@
 class {
-    onCreate() {
-        this.state = { formula:'' };
-    }
     clickDelete() {
-        this.state.formula = '';
-        this.emit('update', this.state.formula);
+        this.emit('update', '');
     }
 
-    clickSign(e) {
-        const previousResult = eval(this.state.formula);
-        const sign = e.target.value;
-        const result = sign !== "=" ? previousResult + e.target.value : previousResult;
-        this.state.formula = result;
+    clickSign(sign) {
+        var formula = this.input.formula;
+        const previousResult = eval(formula);
+        const result = sign !== "=" ? previousResult + sign : previousResult;
         this.emit('update', result);
     }
 
-    clickNumber(e) {
-        const result = this.state.formula + e.target.value;
-        this.state.formula = result;
+    clickNumber(value) {
+        const result = this.input.formula + value;
         this.emit('update', result);
     }
 }
 
 style {
+    .rows {
+        width:300px;
+        margin-top:10px;
+    }
 
+    .rows.first {
+        margin-bottom: 20px;
+        position: relative;
+        top:10px;
+    }
+
+    .btn {
+        width: 50px;
+        height: 50px;
+        background:#000;
+        color:#fff;
+        font-size:26px;
+        cursor:pointer;
+        outline:none;
+        border-bottom:3px solid #333;
+        margin-left: 10px;
+        border-radius: 4px;
+    }
+
+    .btn.first-child {
+        margin-left: 25px;
+    }
+
+    .btn.delete {
+        width: 110px;
+        background: #24b4de;
+        border-bottom: 3px solid #399cb9;
+    }
+
+    .btn.num.zero {
+        width: 110px;
+    }
+
+    .btn.operator {
+        background: #333;
+        border-bottom: 3px solid #555;
+    }
+
+    .btn.eql {
+        background: #17a928;
+        border-bottom: 3px solid #1f7a29;
+    }
 }
 
+<macro number(value, className)>
+    <button.btn.num class=className on-click('clickNumber', value)>
+        ${value}
+    </button>
+</macro>
+
 <div id="main">
-    <div id="first-rows">
-        <button on-click('clickDelete') class="del-bg" id="delete">
-        Del
+    <div.rows.first>
+        <button.btn.delete.first-child on-click('clickDelete')>
+            Del
         </button>
-        <button
-        value="%" on-click('clickSign')
-        class="btn-style operator opera-bg fall-back"
-        >
-        %
+        <button.btn.operator on-click('clickSign', '%')>
+            %
         </button>
-        <button
-        value="+"
-        on-click('clickSign')
-        class="btn-style opera-bg value align operator"
-        >
-        +
+        <button.btn.operator.plus on-click('clickSign', '+')>
+            +
         </button>
     </div>
 
-    <div class="rows">
-        <button
-        value="7"
-        on-click('clickNumber')
-        class="btn-style num-bg num first-child"
-        >
-        7
-        </button>
-        <button
-        value="8"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        8
-        </button>
-        <button
-        value="9"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        9
-        </button>
-        <button
-        value="-"
-        on-click('clickSign')
-        class="btn-style opera-bg operator"
-        >
-        -
+    <div.rows>
+        <number(7, 'first-child')/>
+        <number(8)/>
+        <number(9)/>
+        <button.btn.operator on-click('clickSign', '-')>
+            -
         </button>
     </div>
 
-    <div class="rows">
-        <button
-        value="4"
-        on-click('clickNumber')
-        class="btn-style num-bg num first-child"
-        >
-        4
-        </button>
-        <button
-        value="5"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        5
-        </button>
-        <button
-        value="6"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        6
-        </button>
-        <button
-        value="*"
-        on-click('clickSign')
-        class="btn-style opera-bg operator"
-        >
-        x
+    <div.rows>
+        <number(4, 'first-child')/>
+        <number(5)/>
+        <number(6)/>
+        <button.btn.operator on-click('clickSign', '*')>
+            ×
         </button>
     </div>
 
-    <div class="rows">
-        <button
-        value="1"
-        on-click('clickNumber')
-        class="btn-style num-bg num first-child"
-        >
-        1
-        </button>
-        <button
-        value="2"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        2
-        </button>
-        <button
-        value="3"
-        on-click('clickNumber')
-        class="btn-style num-bg num"
-        >
-        3
-        </button>
-        <button
-        value="/"
-        on-click('clickSign')
-        class="btn-style opera-bg operator"
-        >
-        /
+    <div.rows>
+        <number(1, 'first-child')/>
+        <number(2)/>
+        <number(3)/>
+        <button.btn.operator on-click('clickSign', '/')>
+            ÷
         </button>
     </div>
 
-    <div class="rows">
-        <button
-        value="0"
-        on-click('clickNumber')
-        class="num-bg zero"
-        id="delete"
-        >
-        0
+    <div.rows>
+        <number(0, 'zero first-child')/>
+        <button.btn.num on-click('clickNumber', '.', 'period')>
+            .
         </button>
-        <button
-        value="."
-        on-click('clickNumber')
-        class="btn-style num-bg period fall-back"
-        >
-        .
-        </button>
-        <button
-        value="="
-        on-click('clickSign')
-        id="eqn-bg"
-        class="eqn align"
-        >
-        =
+        <button.btn.operator.eql on-click('clickSign', '=')>
+            =
         </button>
     </div>
 </div>

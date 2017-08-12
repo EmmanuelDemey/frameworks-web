@@ -1,22 +1,59 @@
 class {
-  onCreate() {
-      this.state = {
-          formula: '',
-      }
-  }
+    onCreate() {
+        this.state = {
+            formula: '',
+        }
+    }
 
-  update(formula){
-      if(formula){
-          this.state.formula = formula;
-      }
-  }
+    update(formula){
+        this.state.formula = formula;
+    }
 }
 
 style {
+    body {
+        background:#777;
+    }
 
+    #background {
+        width:300px;
+        height:400px;
+        background:gray;
+        margin:50px auto;
+        transition: all 2s ease;
+    }
+
+    button {
+        border:0;
+        color:#fff;
+    }
+
+    #result {
+        display: block;
+        font-family: sans-serif;
+        width: 230px;
+        height: 40px;
+        margin: 10px auto;
+        text-align: right;
+        border: 0;
+        background: #3b3535;
+        color: #fff;
+        padding-top: 20px;
+        font-size: 20px;
+        margin-left: 25px;
+        outline: none;
+        overflow: hidden;
+        letter-spacing: 4px;
+        position: relative;
+        top: 10px;
+    }
+
+    #result:hover {
+        cursor: text;
+    }
 }
 
 <div id="background">
     <div id="result">${state.formula}</div>
-    <calculator on-update('update') />
+    <calculator formula=state.formula on-update('update') />
 </div>
