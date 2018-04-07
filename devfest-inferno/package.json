@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "inferno": "^3.7.1",
-    "inferno-component": "^3.7.1",
-    "inferno-scripts": "4.2.0"
+    "inferno": "5.0.2",
+    "inferno-component": "5.0.2",
+    "inferno-scripts": "6.3.0"
   },
   "scripts": {
     "start": "inferno-scripts start",

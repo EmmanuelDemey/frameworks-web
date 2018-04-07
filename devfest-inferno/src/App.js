@@ -1,29 +1,27 @@
-import { version, linkEvent } from 'inferno';
-import Component from 'inferno-component';
-import './registerServiceWorker';
-import Logo from './logo';
-import './App.css';
-import Calculator from './components/calculator';
+import Component from "inferno-component";
+import "./registerServiceWorker";
+import "./App.css";
+import Calculator from "./components/calculator";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      formula: '',
-    }
+      formula: ""
+    };
   }
-  
-  updateFormula(formula){
+
+  updateFormula(formula) {
     this.setState({
-      formula,
+      formula
     });
   }
-  
+
   render() {
     return (
       <div id="background">
         <div id="result">{this.state.formula}</div>
-         <Calculator updateFormula={ (formula) => this.updateFormula(formula) }/>
+        <Calculator updateFormula={formula => this.updateFormula(formula)} />
       </div>
     );
   }
