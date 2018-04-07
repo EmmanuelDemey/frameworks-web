@@ -1,29 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Calculator from './components/calculator';
+import React, { Component } from "react";
+import "./App.css";
+import Calculator from "./components/calculator";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      formula: '',
-    }
+      formula: ""
+    };
   }
-  
-  updateFormula(formula){
+
+  updateFormula(formula) {
     this.setState({
-      formula,
+      formula
     });
   }
-  
+
   render() {
     return (
       <div id="background">
-             
         <div id="result">{this.state.formula}</div>
-         <Calculator updateFormula={ (formula) => this.updateFormula(formula) }/>
-        </div>
+        <Calculator updateFormula={formula => this.updateFormula(formula)} />
+      </div>
     );
   }
 }
